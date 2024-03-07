@@ -1,10 +1,8 @@
 package com.userservice.controller;
 
-import com.userservice.entity.UserInformation;
 import com.userservice.model.LoginDTO;
 import com.userservice.model.RegisterRequestDTO;
 import com.userservice.model.ResponseDataDTO;
-import com.userservice.model.TokenDTO;
 import com.userservice.service.AuthService;
 import com.userservice.service.UserInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 
 @Controller
-public class UserController {
+public class RestUserController {
 
 
     @Autowired
@@ -35,7 +33,7 @@ public class UserController {
     public ResponseEntity<ResponseDataDTO> register(@RequestBody RegisterRequestDTO registerRequestDTO) throws ParseException {
         ResponseDataDTO responseDataDTO = new ResponseDataDTO();
         responseDataDTO.setStatus("success");
-        //  responseDataDTO.setData(userInformationService.saveData(registerRequestDTO));
+        responseDataDTO.setData(userInformationService.saveData(registerRequestDTO));
         return new ResponseEntity<>(responseDataDTO, HttpStatus.OK);
     }
 
@@ -52,10 +50,9 @@ public class UserController {
         return new ResponseEntity<>(responseDataDTO, HttpStatus.OK);
 
     }
-
-    @PostMapping("/auth/validate")
-    public String validateToken(@RequestBody TokenDTO token) {
-        authService.validateToken(token.getToken());
+    @GetMapping("/auth/validate")
+    public String validateToken(@RequestParam("token") String token) {
+        authService.validateToken(token);
         return "Token is valid";
     }
 
