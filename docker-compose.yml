@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  db_user:
+    container_name: mysql_db_user
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_user_management
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data_user:/var/lib/mysql
+
+  db_product:
+    container_name: mysql_db_product
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_product_management
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data_product:/var/lib/mysql
+
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  mysql_data_user:
+  mysql_data_product:
+  redis_data:
