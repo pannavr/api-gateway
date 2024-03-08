@@ -9,10 +9,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name = "products")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "products")
 public class Product {
 
     @Id

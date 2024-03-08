@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 
-@Controller
+@RestController
 public class RestUserController {
 
 
