@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class ErrorHandlingController {
-//    @ExceptionHandler(Exception.class)
-//    public ResponseEntity<ResponseDataDTO<String>> commonException(Exception exception){
-//        HttpStatus status;
-//        if(exception instanceof HttpRequestMethodNotSupportedException){
-//            status = HttpStatus.METHOD_NOT_ALLOWED;
-//        }else if(exception instanceof MissingServletRequestParameterException || exception instanceof HttpMessageNotReadableException || exception.getMessage().contains("ParseException")){
-//            status = HttpStatus.BAD_REQUEST;
-//        }else if(exception instanceof HttpMediaTypeNotSupportedException){
-//            status = HttpStatus.UNSUPPORTED_MEDIA_TYPE;
-//        }else{
-//            status = HttpStatus.INTERNAL_SERVER_ERROR;
-//        }
-//        return ResponseEntity.status(status)
-//                .body(ResponseDataDTO.<String>builder().status(status.toString()).data(exception.getMessage()).build());
-//    }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ResponseDataDTO<String>> commonException(Exception exception){
+        HttpStatus status;
+        if(exception instanceof HttpRequestMethodNotSupportedException){
+            status = HttpStatus.METHOD_NOT_ALLOWED;
+        }else if(exception instanceof MissingServletRequestParameterException || exception instanceof HttpMessageNotReadableException || exception.getMessage().contains("ParseException")){
+            status = HttpStatus.BAD_REQUEST;
+        }else if(exception instanceof HttpMediaTypeNotSupportedException){
+            status = HttpStatus.UNSUPPORTED_MEDIA_TYPE;
+        }else{
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        return ResponseEntity.status(status)
+                .body(ResponseDataDTO.<String>builder().status(status.toString()).data(exception.getMessage()).build());
+    }
 }
