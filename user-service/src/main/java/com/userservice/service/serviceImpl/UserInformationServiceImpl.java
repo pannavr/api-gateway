@@ -51,7 +51,7 @@ public class UserInformationServiceImpl implements UserInformationService {
         userInformation.setModifiedDate(currentDate);
         userInformation.setActive(1);
         userInformation = userInformationRepository.save(userInformation);
-        System.out.println(userInformation.getUserId());
+
         UserAccount userAccount = new UserAccount();
         userAccount.setUserName(registerRequestDTO.getUserName());
         userAccount.setPassword(passwordEncoder.encode(registerRequestDTO.getPassword()));

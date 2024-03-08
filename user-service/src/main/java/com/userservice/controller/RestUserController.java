@@ -51,9 +51,9 @@ public class RestUserController {
 
     }
     @GetMapping("/auth/validate")
-    public String validateToken(@RequestParam("token") String token) {
+    public ResponseEntity<String> validateToken(@RequestParam("token") String token) {
         authService.validateToken(token);
-        return "Token is valid";
+        return new ResponseEntity<>("Token is valid", HttpStatus.OK);
     }
 
 }
